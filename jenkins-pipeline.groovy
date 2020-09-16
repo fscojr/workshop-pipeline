@@ -1,17 +1,19 @@
 node('maven') {
-    stage('build') {
-        echo 'building app :)'
-        openshiftBuild(buildConfig: 'workshop-pipeline', showBuildLogs: 'true')
-    }
-    stage('verify') {
-        echo 'dummy verification....'
-    }
-    stage('deploy') {
-        input 'Manual Approval'
-        openshiftDeploy(deploymentConfig: 'casa')
-    }
-    stage('promoting to QA') {
-       echo 'fake stage...'
-       sleep 5 
+   stages {
+        stage('Build') { 
+            steps {
+                echo 'Test 
+            }
+        }
+        stage('Test') { 
+            steps {
+                 echo 'Test1'
+            }
+        }
+        stage('Deploy') { 
+            steps {
+                echo 'Test2'
+            }
+        }
     }
 }
