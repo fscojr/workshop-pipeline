@@ -2,7 +2,7 @@ node('maven') {
    stages {
         stage('Build') { 
             steps {
-                echo 'Test 
+                echo 'Test'
             }
         }
         stage('Test') { 
