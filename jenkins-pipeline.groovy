@@ -1,7 +1,7 @@
 node('maven') {
     stage('build') {
         echo 'building app :)'
-        openshiftBuild(buildConfig: 'casa', showBuildLogs: 'true')
+        openshiftBuild(buildConfig: 'workshop-pipeline', showBuildLogs: 'true')
     }
     stage('verify') {
         echo 'dummy verification....'
