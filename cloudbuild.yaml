@@ -4,11 +4,11 @@ steps:
   args:
     - "-c"
     - |
-       gcloud beta compute ssh  --strict-host-key-checking=no --zone "us-central1-a" "pipeline" --project "jrtrend-206104" --command 'mkdir -pv /tmp/teste2/ && ls -ld /tmp/teste2'
+       gcloud beta compute ssh  --strict-host-key-checking=no --zone "us-central1-a" "juniiin16@pipeline" --project "jrtrend-206104" --command 'mkdir -pv /tmp/teste2/ && ls -ld /tmp/teste2'
 
 - name: gcr.io/cloud-builders/gcloud
   entrypoint: "bash"
   args:
     - "-c"
     - |
-       gcloud beta compute ssh  --strict-host-key-checking=no --zone "us-central1-a" "pipeline" --project "jrtrend-206104" --command 'mkdir -pv /tmp/teste4/ && ls -ld /tmp/teste3'
+       gcloud beta compute ssh  --strict-host-key-checking=no --zone "us-central1-a" "juniiin16@pipeline" --project "jrtrend-206104" --command 'mkdir -pv /tmp/teste4/ && ls -ld /tmp/teste3'
