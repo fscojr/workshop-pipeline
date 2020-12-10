@@ -4,11 +4,4 @@ steps:
   args:
     - "-c"
     - |
-       gcloud beta compute ssh  --strict-host-key-checking=no --force-key-file-overwrite --zone "us-central1-a" "juniiin16@pipeline" --project "jrtrend-206104" --command 'mkdir -pv /tmp/teste2/ && ls -ld /tmp/teste2'
-
-- name: gcr.io/cloud-builders/gcloud
-  entrypoint: "bash"
-  args:
-    - "-c"
-    - |
-       gcloud beta compute ssh  --strict-host-key-checking=no --force-key-file-overwrite --zone "us-central1-a" "juniiin16@pipeline" --project "jrtrend-206104" --command 'mkdir -pv /tmp/teste4/ && ls -ld /tmp/teste3'
+       gcloud beta compute ssh  --strict-host-key-checking=no --force-key-file-overwrite --zone us-central1-a juniiin16@pipeline --command 'mkdir -pv /tmp/teste4/ && ls -ld /tmp/teste3'
