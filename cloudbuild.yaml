@@ -1,10 +1,8 @@
-cloudbuild.yaml:
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    args: ['gsutil', 'cp', '-r', 'gs://teste-jrtrend/.ssh', '/builder/home/']
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: /bin/bash
-    args: ['-c', 'chmod 400 /builder/home/.ssh/id_rsa']
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: [ 'beta', 'compute', 'ssh', '--zone=us-central1-a', 'build@pipeline', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'ls -al' 
-
-      #gcloud beta compute ssh   --strict-host-key-checking=no --zone "us-central1-a"   "pipeline" --project "jrtrend-206104" --command 'mkdir -pv /tmp/teste6/ && ls -ld /tmp/teste6'
+steps:
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  args: ['gsutil', 'cp', '-r', 'gs://teste-jrtrend/.ssh', '/builder/home/']
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: /bin/bash
+  args: ['-c', 'chmod 400 /builder/home/.ssh/id_rsa']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: [ 'beta', 'compute', 'ssh', '--zone=us-central1-a', 'build@pipeline', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'ls -al' 
