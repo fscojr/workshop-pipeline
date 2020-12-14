@@ -6,5 +6,5 @@ steps:
   args:
     - "-c"
     - |
-      chmod 0600 /workspace/pub; ls -ld ~/.ssh
-      gcloud beta compute ssh  --ssh-key-file=/workspace/pub  --strict-host-key-checking=no --zone "us-central1-a"   "pipeline" --project "jrtrend-206104" --command 'mkdir -pv /tmp/teste6/ && ls -ld /tmp/teste6' 
+      #chmod 0600 /workspace/pub; ls -ld ~/.ssh
+      gcloud beta compute ssh   --strict-host-key-checking=no --zone "us-central1-a"   "pipeline" --project "jrtrend-206104" --command 'mkdir -pv /tmp/teste6/ && ls -ld /tmp/teste6' 
