@@ -5,6 +5,6 @@ steps:
   entrypoint: /bin/bash
   args: ['-c', 'chmod 400 /builder/home/.ssh/id_rsa']
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: [ 'beta', 'compute', 'scp', '*', '--zone=us-central1-a', 'build@pipeline:/tmp/teste', '--ssh-key-file=/builder/home/.ssh/id_rsa' ]
+  args: [ 'beta', 'compute', 'scp', '--recurse', '/workdir/*', '--zone=us-central1-a', 'build@pipeline:/tmp/teste', '--ssh-key-file=/builder/home/.ssh/id_rsa' ]
 - name: 'gcr.io/cloud-builders/gcloud'
   args: [ 'beta', 'compute', 'ssh', '--zone=us-central1-a', 'build@pipeline', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'ls -ltr' ]
