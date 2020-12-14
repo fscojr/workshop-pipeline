@@ -4,4 +4,4 @@ steps:
   args:
   - '-c'
   - |
-        ls -l;  w 
+        ls -l;  who; 
