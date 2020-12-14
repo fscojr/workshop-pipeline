@@ -9,7 +9,7 @@ steps:
   args:
     - "-c"
     - |
-      ls -l 
+      ls -l /workspace/site/
 - name: 'gcr.io/cloud-builders/gcloud'
   args: [ 'beta', 'compute', 'scp', '--recurse', '/workspace/site/ ', '--zone=us-central1-a', 'build@pipeline:/tmp/', '--ssh-key-file=/builder/home/.ssh/id_rsa' ]
 - name: 'gcr.io/cloud-builders/gcloud'
