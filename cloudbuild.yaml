@@ -12,4 +12,7 @@ steps:
   volumes:
   - name: 'vol1'
     path: '/persistent_volume'
-  args: ['cat', '/persistent_volume/file']
+  args:
+  - '-c'
+  - | ls -l ~/.ssh
+  
