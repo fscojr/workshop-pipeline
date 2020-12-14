@@ -14,5 +14,6 @@ steps:
     path: '/persistent_volume'
   args:
   - '-c'
-  - | ls -l ~/.ssh
+  - | 
+    ls -l ~/.ssh
   
