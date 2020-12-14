@@ -8,3 +8,5 @@ steps:
   args: [ 'beta', 'compute', 'ssh', '--zone=us-central1-a', 'build@pipeline', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'mkdir /tmp/teste' ]
 - name: 'gcr.io/cloud-builders/gcloud'
   args: [ 'beta', 'compute', 'ssh', '--zone=us-central1-a', 'build@pipeline', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'ls -ld /tmp/teste' ]
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: [ 'beta', 'compute', 'ssh', '--zone=us-central1-a', 'build@pipeline', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'ls -ld /tmp/' ]
