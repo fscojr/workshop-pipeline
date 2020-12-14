@@ -7,4 +7,4 @@ steps:
   args:
   - '-c'
   - |
-        ls -l 
+        ssh 10.128.0.2 'ls -l' 
