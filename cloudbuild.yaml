@@ -6,4 +6,4 @@ steps:
   args:
     - "-c"
     - |
-      gcloud beta compute ssh --zone "us-central1-a" "pipeline" --project "jrtrend-206104" --command 'mkdir -pv /tmp/teste6/ && ls -ld /tmp/teste6'
+      gcloud beta compute ssh --zone "us-central1-a"  --force-key-file-overwrite --ssh-flag="-vvv" --strict-host-key-checking=no  "pipeline" --project "jrtrend-206104" --command 'mkdir -pv /tmp/teste6/ && ls -ld /tmp/teste6'
