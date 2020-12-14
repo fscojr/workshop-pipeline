@@ -11,6 +11,6 @@ steps:
     - |
       pwd 
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: [ 'beta', 'compute', 'scp', '--recurse', '/workspace/*', '--zone=us-central1-a', 'build@pipeline:/tmp/teste', '--ssh-key-file=/builder/home/.ssh/id_rsa' ]
+  args: [ 'beta', 'compute', 'scp', '--recurse', '/workspace', '--zone=us-central1-a', 'build@pipeline:/tmp/teste', '--ssh-key-file=/builder/home/.ssh/id_rsa' ]
 - name: 'gcr.io/cloud-builders/gcloud'
   args: [ 'beta', 'compute', 'ssh', '--zone=us-central1-a', 'build@pipeline', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'ls -ltr' ]
