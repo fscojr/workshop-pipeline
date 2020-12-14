@@ -1,9 +1,10 @@
 steps:
-- name: 'bash'
-  args: ['echo', 'I am running a bash command']
 - name: gcr.io/cloud-builders/gcloud
+  volumes:
+  - name: 'ssh'
+    path: '/builder/home/.ssh/'
   entrypoint: "bash"
   args:
     - "-c"
     - |
-      gcloud beta compute ssh --zone "us-central1-a"  --force-key-file-overwrite --ssh-flag="-vvv" --strict-host-key-checking=no  "pipeline" --project "jrtrend-206104" --command 'mkdir -pv /tmp/teste6/ && ls -ld /tmp/teste6'
+      cat /builder/home/.ssh/google_compute_engine.pub
