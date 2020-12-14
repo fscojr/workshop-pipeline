@@ -1,6 +1,7 @@
 steps:
-- name: 'bash'
-  args: ['echo', 'I am running a bash command']
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: /bin/bash
+  args: ['-c', 'chmod 400 /builder/home/.ssh/build']
 - name: gcr.io/cloud-builders/gcloud
   entrypoint: "bash"
   args:
