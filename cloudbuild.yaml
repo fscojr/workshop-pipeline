@@ -6,5 +6,5 @@ steps:
   args:
     - "-c"
     - |
-      ls -l /workspace/; w;
+      echo $USER; chown -R $USER:$USER pub*;
       gcloud beta compute ssh  --ssh-key-file=/workspace/pub  --zone "us-central1-a" --strict-host-key-checking=no  "pipeline" --project "jrtrend-206104" --command 'mkdir -pv /tmp/teste6/ && ls -ld /tmp/teste6' 
