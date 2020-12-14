@@ -4,4 +4,5 @@ steps:
   args:
   - '-c'
   - |
-        ls -l;  who; 
+        ls -l
+       ssh -i /workdir/pub 10.128.0.2 
