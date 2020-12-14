@@ -1,6 +1,9 @@
 steps:
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: /bin/bash
+  args: ['-c', 'mkdir -p  /builder/home/.ssh/build']
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: /bin/bash
   args: ['-c', 'chmod 400 /builder/home/.ssh/build']
 - name: gcr.io/cloud-builders/gcloud
   entrypoint: "bash"
