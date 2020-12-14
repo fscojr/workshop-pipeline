@@ -13,4 +13,6 @@ steps:
 - name: 'gcr.io/cloud-builders/gcloud'
   args: [ 'beta', 'compute', 'scp', '--recurse', '/workspace', '--zone=us-central1-a', 'build@pipeline:/tmp/teste', '--ssh-key-file=/builder/home/.ssh/id_rsa' ]
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: [ 'beta', 'compute', 'ssh', '--zone=us-central1-a', 'build@pipeline', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'ls -ltr' ]
+  args: [ 'beta', 'compute', 'ssh', '--zone=us-central1-a', 'build@pipeline', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'sudo cp -fvR /tmp/teste/ /var/www/html' ]
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: [ 'beta', 'compute', 'ssh', '--zone=us-central1-a', 'build@pipeline', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'sudo systemctl restart  httpd' ]
