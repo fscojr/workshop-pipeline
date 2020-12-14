@@ -1,10 +1,18 @@
 steps:
 - name: gcr.io/cloud-builders/gcloud
   volumes:
-  - name: 'bol'
-    path: '/builder/home/.ssh/'
-  entrypoint: "bash"
+  - name: 'vol1'
+    path: '/persistent_volume'
+  entrypoint: 'bash'
   args:
-    - "-c"
-    - |
-      cat /builder/home/.ssh/google_compute_engine.pub
+  - '-c'
+  - |
+        echo "Hello, world!" > /persistent_volume/file
+  #  volumes:
+  #  - name: 'bol'
+  #    path: '/builder/home/.ssh/'
+  #  entrypoint: "bash"
+  #  args:
+  #    - "-c"
+  #    - |
+  #      cat /builder/home/.ssh/google_compute_engine.pub
