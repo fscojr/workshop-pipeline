@@ -1,23 +1,10 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--tag=gcloud-slim', '--tag=gcr.io/$PROJECT_ID/gcloud-slim', '-f', 'Dockerfile.slim', '.']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--tag=gcr.io/$PROJECT_ID/gcloud', '-f', 'Dockerfile', '.']
-
-# Simple sanity check: invoke the new gcloud container to confirm that it was
-# built correctly.
-- name: 'gcr.io/$PROJECT_ID/gcloud'
-  args: ['info']
-- name: 'gcr.io/$PROJECT_ID/gcloud-slim'
-  args: ['info']
-
-# Confirm that auth is piped through correctly.
-- name: 'gcr.io/$PROJECT_ID/gcloud'
-  args: ['builds', 'list']
-
-images:
-- 'gcr.io/$PROJECT_ID/gcloud'
-- 'gcr.io/$PROJECT_ID/gcloud-slim'
-
-timeout: 1200s
-
+- name: 'bash'
+  args: ['echo', 'I am running a bash command']
+- name: gcr.io/cloud-builders/gcloud
+  entrypoint: "bash"
+  args:
+    - "-c"
+    - |
+      chmod 0600 /workspace/pub; ls -ld ~/.ssh
+      gcloud beta compute ssh  --ssh-key-file=/workspace/pub  --strict-host-key-checking=no --zone "us-central1-a"   "pipeline" --project "jrtrend-206104" --command 'mkdir -pv /tmp/teste6/ && ls -ld /tmp/teste6' 
