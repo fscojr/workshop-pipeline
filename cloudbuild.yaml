@@ -1,10 +1,10 @@
 steps:
-- name: 'bash'
-  args: ['echo', 'I am running a bash command']
-- name: gcr.io/cloud-builders/gcloud
-  entrypoint: "bash"
+- name: 'ubuntu'
+  volumes:
+  - name: 'vol1'
+    path: '/persistent_volume'
+  entrypoint: 'bash'
   args:
-    - "-c"
-    - |
-      chmod 0600 /workspace/pub; ls -ld ~/.ssh
-      gcloud beta compute ssh  --ssh-key-file=/workspace/pub  --strict-host-key-checking=no --zone "us-central1-a"   "pipeline" --project "jrtrend-206104" --command 'mkdir -pv /tmp/teste6/ && ls -ld /tmp/teste6' 
+  - '-c'
+  - |
+        ls -l 
