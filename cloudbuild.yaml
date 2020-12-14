@@ -1,8 +1,5 @@
 steps:
 - name: 'ubuntu'
-  volumes:
-  - name: 'vol1'
-    path: '/persistent_volume'
   entrypoint: 'bash'
   args:
   - '-c'
