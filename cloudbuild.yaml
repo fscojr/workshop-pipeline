@@ -5,14 +5,39 @@ steps:
   entrypoint: /bin/bash
   args: ['-c', 'chmod 400 /builder/home/.ssh/id_rsa']
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: [ 'beta', 'compute', 'scp', '--recurse', '/workspace/site/', '--zone=us-central1-a', 'build@pipeline:/tmp/', '--ssh-key-file=/builder/home/.ssh/id_rsa' ]
+  args: [ 'beta', 'compute', 'scp', '--recurse', '/workspace/site/', '--zone=us-central1-a', 'build@${_INSTANCE_NAME}:${_TMP_DIR}', '--ssh-key-file=/builder/home/.ssh/id_rsa' ]
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: [ 'beta', 'compute', 'ssh', '--zone=us-central1-a', 'build@pipeline', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'sudo cp -fvR /tmp/site/* /var/www/html' ]
+  args: [ 'beta', 'compute', 'ssh', '--zone=${_ZONE}', 'build@${_INSTANCE_NAME}', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'sudo cp -fvR /tmp/site/* ${_DEST_DIR}' ]
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: [ 'beta', 'compute', 'ssh', '--zone=us-central1-a', 'build@pipeline', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'sudo systemctl restart  httpd' ]
+  args: [ 'beta', 'compute', 'ssh', '--zone=${_ZONE}', 'build@${_INSTANCE_NAME}', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'sudo systemctl restart  httpd' ]
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: [ 'beta', 'compute', 'ssh', '--zone=us-central1-a', 'build@pipeline', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'source /var/www/teste.sh' ]
+  args: [ 'beta', 'compute', 'ssh', '--zone=${_ZONE}', 'build@${_INSTANCE_NAME}', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'source ${_EXEC_SCRIPT}' ]
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: [ 'beta', 'compute', 'ssh', '--zone=us-central1-a', 'build@pipeline', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'echo ${_MY_VAR}' ]
+  args: [ 'beta', 'compute', 'ssh', '--zone=${_ZONE}', 'build@${_INSTANCE_NAME}', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'echo ${_MY_VAR}' ]
+
+
+
+
+
+
+
+
+
+#steps:
+#- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+#  args: ['gsutil', 'cp', '-r', 'gs://teste-jrtrend/.ssh', '/builder/home/']
+#- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+#  entrypoint: /bin/bash
+#  args: ['-c', 'chmod 400 /builder/home/.ssh/id_rsa']
+#- name: 'gcr.io/cloud-builders/gcloud'
+#  args: [ 'beta', 'compute', 'scp', '--recurse', '/workspace/site/', '--zone=us-central1-a', 'build@pipeline:/tmp/', '--ssh-key-file=/builder/home/.ssh/id_rsa' ]
+#- name: 'gcr.io/cloud-builders/gcloud'
+#  args: [ 'beta', 'compute', 'ssh', '--zone=us-central1-a', 'build@pipeline', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'sudo cp -fvR /tmp/site/* /var/www/html' ]
+#- name: 'gcr.io/cloud-builders/gcloud'
+#  args: [ 'beta', 'compute', 'ssh', '--zone=us-central1-a', 'build@pipeline', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'sudo systemctl restart  httpd' ]
+#- name: 'gcr.io/cloud-builders/gcloud'
+#  args: [ 'beta', 'compute', 'ssh', '--zone=us-central1-a', 'build@pipeline', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'source /var/www/teste.sh' ]
+#- name: 'gcr.io/cloud-builders/gcloud'
+#  args: [ 'beta', 'compute', 'ssh', '--zone=us-central1-a', 'build@pipeline', '--ssh-key-file=/builder/home/.ssh/id_rsa', '--', 'echo ${_MY_VAR}' ]
 
 
